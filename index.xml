@@ -2,7 +2,7 @@
     <channel>
         <title>VirgilWong 的个人网站</title>
         <link>https://hyhvirgil.github.io/</link>
-        <description>关于 LoveIt 主题</description>
+        <description>VirgilWong 分享技术、生活的小站</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 06 Mar 2020 21:40:32 &#43;0800</lastBuildDate>
             <atom:link href="https://hyhvirgil.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
@@ -19,13 +19,6 @@
     <author>作者</author>
     <guid>https://hyhvirgil.github.io/theme-documentation-built-in-shortcodes/</guid>
     <description><![CDATA[<p><strong>Hugo</strong> 提供了多个内置的 Shortcodes, 以方便作者保持 Markdown 内容的整洁.</p>]]></description>
-</item><item>
-    <title>主题文档 - 扩展 Shortcodes</title>
-    <link>https://hyhvirgil.github.io/theme-documentation-extended-shortcodes/</link>
-    <pubDate>Tue, 03 Mar 2020 16:29:59 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://hyhvirgil.github.io/theme-documentation-extended-shortcodes/</guid>
-    <description><![CDATA[<p><strong>LoveIt</strong> 主题在 Hugo 内置的 shortcode 的基础上提供多个扩展的 shortcode.</p>]]></description>
 </item><item>
     <title>Markdown 基本语法</title>
     <link>https://hyhvirgil.github.io/basic-markdown-syntax/</link>
