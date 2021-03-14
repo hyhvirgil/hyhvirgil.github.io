@@ -2,21 +2,15 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://hyhvirgil.github.io/theme-documentation-basics/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://hyhvirgil.github.io/theme-documentation-built-in-shortcodes/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://hyhvirgil.github.io/basic-markdown-syntax/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://hyhvirgil.github.io/emoji-support/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://hyhvirgil.github.io/categories/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://hyhvirgil.github.io/posts/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://hyhvirgil.github.io/tags/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://hyhvirgil.github.io/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://hyhvirgil.github.io/tags/shortcodes/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://hyhvirgil.github.io/tags/html/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://hyhvirgil.github.io/tags/markdown/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://hyhvirgil.github.io/categories/markdown/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://hyhvirgil.github.io/tags/emoji/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://hyhvirgil.github.io/about/</loc><lastmod>2021-02-09T21:46:48&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://hyhvirgil.github.io/tags/content/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://hyhvirgil.github.io/tags/installation/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://hyhvirgil.github.io/categories/documentation/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://hyhvirgil.github.io/tags/configuration/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url></urlset>
+            <loc>https://hyhvirgil.github.io/categories/</loc><lastmod>2021-03-14T23:09:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://hyhvirgil.github.io/posts/</loc><lastmod>2021-03-14T23:09:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://hyhvirgil.github.io/tags/</loc><lastmod>2021-03-14T23:09:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://hyhvirgil.github.io/</loc><lastmod>2021-03-14T23:09:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://hyhvirgil.github.io/algorithm_de-bruijn-sequences/</loc><lastmod>2021-03-14T23:09:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://hyhvirgil.github.io/tags/go/</loc><lastmod>2021-03-06T23:51:03&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>https://hyhvirgil.github.io/tags/content/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://hyhvirgil.github.io/tags/installation/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://hyhvirgil.github.io/categories/documentation/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>https://hyhvirgil.github.io/categories/algorithm/</loc><lastmod>2021-03-06T23:51:03&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>https://hyhvirgil.github.io/tags/algorithm/</loc><lastmod>2021-03-06T23:51:03&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>https://hyhvirgil.github.io/tags/configuration/</loc><lastmod>2021-02-09T17:20:41&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url></urlset>

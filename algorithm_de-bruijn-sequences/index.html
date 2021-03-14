@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>德布鲁因序列 - VirgilWong 的个人网站</title><meta name="Description" content="德布鲁因序列讲解、用法"><meta property="og:title" content="德布鲁因序列" />
+<meta property="og:description" content="德布鲁因序列讲解、用法" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hyhvirgil.github.io/algorithm_de-bruijn-sequences/" />
+<meta property="og:image" content="https://hyhvirgil.github.io/logo.png"/>
+<meta property="article:published_time" content="2021-03-05T12:59:56+08:00" />
+<meta property="article:modified_time" content="2021-03-14T23:09:41+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://hyhvirgil.github.io/logo.png"/>
+
+<meta name="twitter:title" content="德布鲁因序列"/>
+<meta name="twitter:description" content="德布鲁因序列讲解、用法"/>
+<meta name="application-name" content="VirgilWong">
+<meta name="apple-mobile-web-app-title" content="VirgilWong"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://hyhvirgil.github.io/algorithm_de-bruijn-sequences/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "德布鲁因序列",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/hyhvirgil.github.io\/algorithm_de-bruijn-sequences\/"
+        },"image": [{
+                            "@type": "ImageObject",
+                            "url": "https:\/\/hyhvirgil.github.io\/images\/Apple-Devices-Preview.png",
+                            "width":  3200 ,
+                            "height":  2048 
+                        }],"genre": "posts","keywords": "algorithm, go","wordcount":  2060 ,
+        "url": "https:\/\/hyhvirgil.github.io\/algorithm_de-bruijn-sequences\/","datePublished": "2021-03-05T12:59:56+08:00","dateModified": "2021-03-14T23:09:41+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": {
+                    "@type": "ImageObject",
+                    "url": "https:\/\/hyhvirgil.github.io\/images\/avatar.png",
+                    "width":  528 ,
+                    "height":  560 
+                }},"author": {
+                "@type": "Person",
+                "name": "VirgilWong"
+            },"description": "德布鲁因序列讲解、用法"
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="VirgilWong 的个人网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>VirgilWong 的小站</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/categories/documentation/"> 文档 </a><a class="menu-item" href="https://github.com/hyhvirgil" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="VirgilWong 的个人网站"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>VirgilWong 的小站</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/categories/documentation/" title="">文档</a><a class="menu-item" href="https://github.com/hyhvirgil" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content always-active" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">德布鲁因序列</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://virgilwong.top/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>VirgilWong</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/algorithm/"><i class="far fa-folder fa-fw"></i>算法</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-03-05">2021-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2060 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/algorithm_de-bruijn-sequences/" class="leancloud_visitors" data-flag-title="德布鲁因序列">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#德布鲁因序列">德布鲁因序列</a>
+      <ul>
+        <li><a href="#定义">定义</a></li>
+        <li><a href="#长度">长度</a></li>
+        <li><a href="#数量">数量</a></li>
+      </ul>
+    </li>
+    <li><a href="#应用实例">应用实例</a>
+      <ul>
+        <li><a href="#位扫描器">位扫描器</a>
+          <ul>
+            <li><a href="#隔离-1">隔离 1</a></li>
+            <li><a href="#哈希">哈希</a></li>
+            <li><a href="#例子">例子</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#延伸阅读">延伸阅读</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="德布鲁因序列">德布鲁因序列</h2>
+<h3 id="定义">定义</h3>
+<p>德布鲁因序列（De Bruijn Sequences），记为 $ B(k, n) $，是 k 元素构成的循环序列。所有长度为 n 的 k 元素构成序列都在它的子序列（以环状形式）中，出现并且仅出现一次。</p>
+<p>例如，序列 00010111 属于 $ B(2,3) $。 00010111 的所有长度为 3 的子序列为000,001,010,101,011,111,110,100，正好构成了 {0,1} 长度为 3 的所有组合，且都出现了一次。</p>
+<h3 id="长度">长度</h3>
+<p>德布鲁因序列的长度为 $ k^n $。在上述 $ B(2,3)  $ 的例子中，总长度为 $ 2^3=8 $ 。</p>
+<p>注意到，所有长度为 n 的 k 元素构成的序列总共有 $ k^n $。而对于德布鲁因序列中的每个元素，恰好构成一个以此元素开头长度为 n 的子序列。所以德布鲁因序列的长度为 $ k^n $。</p>
+<h3 id="数量">数量</h3>
+<p>德布鲁因序列不是唯一的，所以在众多开源代码中，经常会见到使用不同的序列值进行计算。虽然所用的序列值不一样，但思想和效果都是一样的。</p>
+<br>
+<h2 id="应用实例">应用实例</h2>
+<h3 id="位扫描器">位扫描器</h3>
+<p>有这么一个常见的问题，对一个非 0 的正数，如果快速地找到它二进制位中最低位的 1 的位置呢？例如，0101010010010100，它的最低位的 1 的位置是从右往左数的第 2 位（从 0 开始数）。</p>
+<p>这个问题，可以从右往左遍历每一位上的值，发现首个 1 时，其下标，即是我们要的结果。那有没有效率更高的做法呢？</p>
+<br/>
+<p>这有两个理论需要说明下：</p>
+<h4 id="隔离-1">隔离 1</h4>
+<p>我们首先将在任意二进制值中找到 1 的问题简化为在恰好包含一个 1 的值中找到 1 的问题。</p>
+<p>如果（非零）输入字是 x，我们计算 <code>y = x &amp; (-x)</code>（&quot;＆&ldquo;是按位 AND 的 C 语法），它产生的值 y 仅包含唯一且是 x 的最低位 1。例如，如果 <code>x = 01101000</code>，则 x 的二进制补码为 <code>-x = 10011000</code>，因此 <code>y =00001000</code>。</p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>技巧<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">要索引一个值中的所有1，我们可以计算 x-y，从而删除已经索引的位，然后重复该过程。</div>
+        </div>
+    </div>
+<p>隔离 1 的这种策略似乎是大家的共识，因为在当代机器下，按位与和二进制补码是可以在一个机器周期内完成的。</p>
+<h4 id="哈希">哈希</h4>
+<p>现在，我们剩下的问题是在正好包含一个 1 的值中索引 1 。对于一个 n 位的值，有正好 n 个可能的值正好包含一个 1。因为 n 很小<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>，我们可以使用算法中的另一个技巧：哈希。</p>
+<p>我们使用完美的哈希函数<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> h 将每个单 1 值映射到哈希表。然后，给定正好包含一个 1 的值 x，我们看一下
+哈希表中存储 1 位索引的 h（x）上的 h（x）。为了使该策略有效地起作用，我们需要：</p>
+<ul>
+<li>哈希表很小</li>
+<li>哈希函数易于计算</li>
+<li>并且散列函数不产生冲突，即，两个单一的 1 值 x 和 y 都不应产生哈希值，使得h（x）= h（y）。如 x = 001000000, y = 00010000 时，h（x）必须不等于 h（y）</li>
+</ul>
+<h4 id="例子">例子</h4>
+<p>下面看下 go 源码中是如何解决的。</p>
+<br/>
+<p>在 go 内存管理的相关源码中，有使用 <code>allocCache uint64</code> 变量的二进制位来表示相同大小的内存块是否已经分配，即 1 表示未分配，0 表示已分配。那么当需要分配内存时，只要找出其中一个 1，把对应位置的 1 设置为 0。并把对应位置的指针返回即可。</p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>技巧<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>初始化代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">s</span><span class="p">.</span><span class="nx">allocCache</span> <span class="p">=</span> <span class="p">^</span><span class="nb">uint64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">// all 1s indicating all free.
+</span></code></pre></td></tr></table>
+</div>
+</div></div>
+        </div>
+    </div>
+<p>那么，如何找出 1 的位置呢？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// 摘自：runtime\internal\sys\intrinsics.go
+</span><span class="c1">// 由于 32 位和 64 位思路是一致的，此处选择 32 位说明
+</span><span class="c1"></span><span class="kd">const</span> <span class="nx">deBruijn32</span> <span class="p">=</span> <span class="mh">0x04653adf</span>
+
+<span class="kd">var</span> <span class="nx">deBruijnIdx32</span> <span class="p">=</span> <span class="p">[</span><span class="mi">32</span><span class="p">]</span><span class="kt">byte</span><span class="p">{</span>
+	<span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span>
+	<span class="mi">4</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span>
+	<span class="mi">31</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span>
+	<span class="mi">30</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">Ctz32</span><span class="p">(</span><span class="nx">x</span> <span class="kt">uint32</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="nx">x</span> <span class="o">&amp;=</span> <span class="o">-</span><span class="nx">x</span>                      <span class="c1">// isolate low-order bit
+</span><span class="c1"></span>	<span class="nx">y</span> <span class="o">:=</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">deBruijn32</span> <span class="o">&gt;&gt;</span> <span class="mi">27</span>    <span class="c1">// extract part of deBruijn sequence
+</span><span class="c1"></span>	<span class="nx">i</span> <span class="o">:=</span> <span class="nb">int</span><span class="p">(</span><span class="nx">deBruijnIdx32</span><span class="p">[</span><span class="nx">y</span><span class="p">])</span>   <span class="c1">// convert to bit index
+</span><span class="c1"></span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>通过上述概念可以了解到，对于 32 位的值，由于$ 2^5=32 $，所以应记为 B(2, 5)，即子序列长度为 5。</p>
+<p>我们以序列 <code>deBruijn32 = 0x04653adf = 00000100 01100101 00111010 11011111</code> 来分析：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">00000100 01100101 00111010 11011111     子序列值 1的位置
+00000... ........ ........ ........     0		0
+.00001.. ........ ........ ........     1	    1
+..00010. ........ ........ ........     2	    2
+...00100 ........ ........ ........     4	    3
+....0100 0....... ........ ........     8	    4
+.....100 01...... ........ ........     17	    5
+......00 011..... ........ ........     3	    6
+.......0 0110.... ........ ........     6	    7
+........ 01100... ........ ........     12	    8
+........ .11001.. ........ ........     25	    9
+........ ..10010. ........ ........     18	    10
+........ ...00101 ........ ........     5	    11
+........ ....0101 0....... ........     10	    12
+........ .....101 00...... ........     20	    13
+........ ......01 001..... ........     9	    14
+........ .......1 0011.... ........     19	    15
+........ ........ 00111... ........     7	    16
+........ ........ .01110.. ........     14	    17
+........ ........ ..11101. ........     29	    18
+........ ........ ...11010 ........     26	    19
+........ ........ ....1010 1.......     21	    20
+........ ........ .....010 11......     11	    21
+........ ........ ......10 110.....     22	    22
+........ ........ .......0 1101....     13	    23
+........ ........ ........ 11011...     27	    24
+........ ........ ........ .10111..     23	    25
+........ ........ ........ ..01111.     15	    26
+........ ........ ........ ...11111     31	    27
+........ ........ ........ ....11110    30	    28
+........ ........ ........ .....11100   28	    29
+........ ........ ........ ......11000  24	    30
+........ ........ ........ .......10000 16	    31
+</code></pre></td></tr></table>
+</div>
+</div><p>假设入参时：x = 00000000 00000000 10100111 00010000</p>
+<p>根据<strong>隔离 1</strong>一小节中 <code>x &amp;= -x</code> 的含义。运行此语句后 x = 00000000 00000000 00000000 00010000</p>
+<br>
+<p>此时 x 只剩下其中一位是 1，其它都是 0。换句话说，现在 x 必定是 2 的 n 次方，所以任何一个数字乘以这个特殊的二进制的数，都相当于左移运算。左移的位数就是原二进制数末尾 1 所在的位置。即 x * deBruijn32 = deBruijn32 向左移 4 位 = 0100 01100101 00111010 11011111 0000</p>
+<p>紧接着再向右移 27 位，那 deBruijn32 中的值只留下 5 位，且这 5 位是根据 x 中 1 的搁置决定的。 即 y = x * deBruijn32 &raquo; 27 = 01000 = 8。</p>
+<p>再根据 deBruijnIdx32  数组中事先计算好的值和位置的关系，就可以计算出，deBruijnIdx32 [8] = 4。即 1 在入参时 x 的位置是 4。</p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>技巧<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>var deBruijnIdx32 = [32]byte{
+0, 1, 2, 6, 3, 11, 7, 16,
+4, 14, 12, 21, 8, 23, 17, 26,
+31, 5, 10, 15, 13, 20, 22, 25,
+30, 9, 19, 24, 29, 18, 28, 27,
+}</p>
+<p>deBruijnIdx32 数组是如何计算出的呢？</p>
+<p>先看上述 0x04653adf 的&quot;子序列值&quot;与 &ldquo;1 的位置&quot;关系。</p>
+<p>当子序列为 100 01，&ldquo;子序列值&quot;为 17 时，&ldquo;1 的位置&quot;为 5。这时，设置 deBruijnIdx32[17] = 5 即可。</p>
+</div>
+        </div>
+    </div>
+<h2 id="延伸阅读">延伸阅读</h2>
+<ul>
+<li><a href="http://supertech.csail.mit.edu/papers/debruijn.pdf">http://supertech.csail.mit.edu/papers/debruijn.pdf</a></li>
+</ul>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>如 32 位值 n 为32，64 位值 n 为 64。都是很小且可以枚举的值 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="https://www.wiki-wiki.top/baike-%E5%AE%8C%E7%BE%8E%E6%95%A3%E5%88%97">https://www.wiki-wiki.top/baike-%E5%AE%8C%E7%BE%8E%E6%95%A3%E5%88%97</a> <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-03-14&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/c676a0255fde8909113822aaeef570067f1e9e1b" target="_blank" title="commit by virgilwong(hyhvirgil@gmail.com) c676a0255fde8909113822aaeef570067f1e9e1b: 优化">
+                                    <i class="fas fa-hashtag fa-fw"></i>c676a02</a></span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/algorithm_de-bruijn-sequences/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://hyhvirgil.github.io/algorithm_de-bruijn-sequences/" data-title="德布鲁因序列" data-hashtags="algorithm,go"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://hyhvirgil.github.io/algorithm_de-bruijn-sequences/" data-hashtag="algorithm"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://hyhvirgil.github.io/algorithm_de-bruijn-sequences/" data-title="德布鲁因序列"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://hyhvirgil.github.io/algorithm_de-bruijn-sequences/" data-title="德布鲁因序列"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://hyhvirgil.github.io/algorithm_de-bruijn-sequences/" data-title="德布鲁因序列"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/algorithm/">算法</a>,&nbsp;<a href="/tags/go/">go</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">VirgilWong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery.js@1.2.0/dist/js/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-thumbnail.js@1.2.0/dist/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lg-zoom.js@1.2.0/dist/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,9 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>所有文章 - VirgilWong 的个人网站</title>
-        <link>https://hyhvirgil.github.io/posts/</link>
-        <description>所有文章 | VirgilWong 的个人网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 05 Mar 2021 12:59:56 &#43;0800</lastBuildDate><atom:link href="https://hyhvirgil.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <title>算法 - 分类 - VirgilWong 的个人网站</title>
+        <link>https://hyhvirgil.github.io/categories/algorithm/</link>
+        <description>算法 - 分类 - VirgilWong 的个人网站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://hyhvirgil.github.io/categories/algorithm/" rel="self" type="application/rss+xml" /><item>
     <title>德布鲁因序列</title>
     <link>https://hyhvirgil.github.io/algorithm_de-bruijn-sequences/</link>
     <pubDate>Fri, 05 Mar 2021 12:59:56 &#43;0800</pubDate>
