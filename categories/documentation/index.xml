@@ -3,5 +3,12 @@
         <title>文档 - 分类 - VirgilWong 的个人网站</title>
         <link>https://hyhvirgil.github.io/categories/documentation/</link>
         <description>文档 - 分类 - VirgilWong 的个人网站</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://hyhvirgil.github.io/categories/documentation/" rel="self" type="application/rss+xml" /></channel>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://hyhvirgil.github.io/categories/documentation/" rel="self" type="application/rss+xml" /><item>
+    <title>德布鲁因序列</title>
+    <link>https://hyhvirgil.github.io/algorithm_de-bruijn-sequences/</link>
+    <pubDate>Fri, 05 Mar 2021 12:59:56 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://hyhvirgil.github.io/algorithm_de-bruijn-sequences/</guid>
+    <description><![CDATA[德布鲁因序列 定义 德布鲁因序列（De Bruijn Sequences），记为 $ B(k, n) $，是 k 元素构成的循环序列。所有长度为 n 的 k 元素构成序列都在它的子序列（]]></description>
+</item></channel>
 </rss>
